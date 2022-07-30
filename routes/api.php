@@ -6,7 +6,7 @@ use App\Http\Controllers\GolonganController;
 use App\Http\Controllers\PegawaiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -27,6 +27,8 @@ Route::put('/pegawai/{id?}',[PegawaiController::class,'update']);
 Route::delete('/pegawai/{id?}',[PegawaiController::class,'destroy']);
 Route::get('/pegawai/relasi',[PegawaiController::class,'cek_relasei']);
 
+//
+Route::group(['middleware' => 'auth:api'], function ($router) { 
 
 Route::get('/golongan',[GolonganController::class,'index']);
 Route::post('/golongan',[GolonganController::class,'store']);
@@ -35,13 +37,12 @@ Route::delete('/golongan/{id?}',[GolonganController::class,'destroy']);
 Route::get('/golongan/relasi/golongan',[GolonganController::class,'cek_relasi_pegawai']);
 Route::get('/golongan/relasi/gaji',[GolonganController::class,'cek_relasi_gaji']);
 
-
-
+//
 Route::get('/gaji',[GajiController::class,'index']);
 Route::post('/gaji',[GajiController::class,'store']);
 Route::put('/gaji/{id?}',[GajiController::class,'update']);
 Route::delete('/gaji/{id?}',[GajiController::class,'destroy']);
-
+});
     //
     Route::group(['middleware' => 'api'], function ($router) {
 
