@@ -77,7 +77,6 @@ class GolonganController extends Controller
    public function cek_relasi_gaji()
    {
     $pegawais = Golongan::with('gaji')->get();
-    
     return response()->json(['pesan' => 'Data Berhasil dihapus', 'data' => $pegawais]);
    }
 }

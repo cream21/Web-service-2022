@@ -13,7 +13,7 @@ class Golongan extends Model
 
     public function pegawai()
     {
-        return $this->hasMany(Pegawai::class);
+        return $this->hasMany(Pegawai::class,"id_golongan");
     }
     
     public function gaji()
